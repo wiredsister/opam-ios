@@ -5,8 +5,7 @@ PREFIX="$1"
 rm -rf "${PREFIX}"/bin "${PREFIX}"/lib "${PREFIX}"/man
 
 sed -i bak -e 's|OCAMLDIR|'${PREFIX}'|g' ocamloptrev
-
-sed -i junk -e '1 s|^.*$|#!'${PREFIX}'/bin/ocamlrun|g' bin/ocamlopt
+perl -i -pe 's{^#!/usr/local/ocamlxarm/v7/bin/ocamlrun}{#!'${PREFIX}'/bin/ocamlrun}' bin/ocamlopt
 
 mv bin "${PREFIX}"
 cp ocamloptrev "${PREFIX}"/bin
